@@ -26,8 +26,10 @@ class InfoCard extends StatelessWidget {
       onTap: onTap,
 
       child: Container(
-        height: 80,
-        width: MediaQuery.of(context).size.width * 0.3,
+        height: 90,
+        width: double.infinity,
+
+        padding: const EdgeInsets.all(10),
 
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 30, 42, 71),
@@ -36,40 +38,54 @@ class InfoCard extends StatelessWidget {
         ),
 
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset(image, width: 50, height: 50, color: color),
 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: color,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            // 🖼 IMAGE
+            Image.asset(
+              image,
+              width: 40,
+              height: 40,
+              color: color,
+            ),
+
+            const SizedBox(width: 10),
+
+            // 📄 TEXTE 
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: color,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
+                  Text(
                     info,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white70, fontSize: 13),
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                    ),
                   ),
-                ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
+                  Text(
                     subtitle,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white70, fontSize: 13),
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 12,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

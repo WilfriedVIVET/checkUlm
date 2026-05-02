@@ -5,6 +5,7 @@ import 'package:ulm_app/pages/flights.dart';
 import 'package:ulm_app/pages/maintenance.dart';
 import 'package:ulm_app/widgets/home_card.dart';
 import 'package:ulm_app/widgets/info_card.dart';
+import 'package:ulm_app/widgets/footer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,161 +18,185 @@ class HomePage extends StatelessWidget {
       body: Container(
         color: const Color(0xFF0B1220),
 
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
 
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
-                // 🔵 HEADER
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF111827),
-                    border: Border.all(color: const Color(0xFF2563EB), width: 1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "🧑‍✈️ PILOTE CONNECTÉ",
+              // 🔵 HEADER
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF111827),
+                  border: Border.all(color: const Color(0xFF2563EB), width: 1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("🧑‍✈️ PILOTE CONNECTÉ",
                         style: TextStyle(
                           color: Colors.blueAccent,
                           fontSize: 12,
-                          letterSpacing: 1.2,
                           fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        "Bienvenue pilote",
+                        )),
+                    SizedBox(height: 8),
+                    Text("Bienvenue pilote",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        "Que voulez-vous faire aujourd’hui ?",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-
-                // 🔧 MODULES (wrap responsive)
-                Center(
-                  child: Wrap(
-                    spacing: 20,
-                    runSpacing: 20,
-                    alignment: WrapAlignment.center,
-                    children: [
-
-                      HomeCard(
-                        title: "CHECKLIST",
-                        subtitle: "Pré-vol • Décollage • Atterrissage",
-                        image: "img/checklist.png",
-                        color: Colors.blue,
-                        border: Colors.blue,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Checklist()),
-                          );
-                        },
-                      ),
-
-                      HomeCard(
-                        title: "CARNET DE VOL",
-                        subtitle: "Heures • Missions • Historique",
-                        image: "img/avion.png",
-                        color: Colors.green,
-                        border: Colors.green,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Flights()),
-                          );
-                        },
-                      ),
-
-                      HomeCard(
-                        title: "MAINTENANCE",
-                        subtitle: "Suivi • Échéances • Sécurité",
-                        image: "img/molette.png",
-                        color: Colors.orange,
-                        border: Colors.orange,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Maintenance()),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 30),
-
-                // 📊 INFOS EN LIGNE
-                Row(
-                  children: [
-
-                    Expanded(
-                      child: InfoCard(
-                        title: "Heures Totales",
-                        subtitle: "Toutes Machines",
-                        info: "154.4h",
-                        image: "img/horloge.png",
-                        color: Colors.blue,
-                        border: Colors.blue,
-                        onTap: () {},
-                      ),
-                    ),
-
-                    const SizedBox(width: 12),
-
-                    Expanded(
-                      child: InfoCard(
-                        title: "Prochain vol",
-                        subtitle: "test",
-                        info: "24 mai 2026",
-                        image: "img/calendrier.png",
-                        color: Colors.green,
-                        border: Colors.green,
-                        onTap: () {},
-                      ),
-                    ),
-
-                    const SizedBox(width: 12),
-
-                    Expanded(
-                      child: InfoCard(
-                        title: "Prochaine échéance",
-                        subtitle: "dans 12h",
-                        info: "Vidange moteur",
-                        image: "img/molette.png",
-                        color: Colors.orange,
-                        border: Colors.orange,
-                        onTap: () {},
-                      ),
-                    ),
+                        )),
+                    SizedBox(height: 4),
+                    Text("Que voulez-vous faire aujourd’hui ?",
+                        style: TextStyle(color: Colors.grey, fontSize: 14)),
                   ],
                 ),
+              ),
 
-              ],
-            ),
+              const SizedBox(height: 24),
+
+              // ✈️ HOME CARDS
+              Row(
+                children: [
+
+                  Expanded(child: HomeCard(
+                    title: "CHECKLIST",
+                    subtitle: "Pré-vol • Décollage • Atterrissage",
+                    image: "img/checklist.png",
+                    color: Colors.blue,
+                    border: Colors.blue,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Checklist()),
+                      );
+                    },
+                  )),
+
+                  const SizedBox(width: 12),
+
+                  Expanded(child: HomeCard(
+                    title: "CARNET DE VOL",
+                    subtitle: "Heures • Missions • Historique",
+                    image: "img/avion.png",
+                    color: Colors.green,
+                    border: Colors.green,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Flights()),
+                      );
+                    },
+                  )),
+
+                  const SizedBox(width: 12),
+
+                  Expanded(child: HomeCard(
+                    title: "MAINTENANCE",
+                    subtitle: "Suivi • Échéances • Sécurité",
+                    image: "img/molette.png",
+                    color: Colors.orange,
+                    border: Colors.orange,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Maintenance()),
+                      );
+                    },
+                  )),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+
+              // 📊 INFO CARDS
+              Row(
+                children: [
+
+                  Expanded(child: InfoCard(
+                    title: "Heures Totales",
+                    subtitle: "Toutes Machines",
+                    info: "154.4h",
+                    image: "img/horloge.png",
+                    color: Colors.blue,
+                    border: Colors.blue,
+                    onTap: () {},
+                  )),
+
+                  const SizedBox(width: 12),
+
+                  Expanded(child: InfoCard(
+                    title: "Prochain vol",
+                    subtitle: "test",
+                    info: "24 mai 2026",
+                    image: "img/calendrier.png",
+                    color: Colors.green,
+                    border: Colors.green,
+                    onTap: () {},
+                  )),
+
+                  const SizedBox(width: 12),
+
+                  Expanded(child: InfoCard(
+                    title: "Prochaine échéance",
+                    subtitle: "dans 12h",
+                    info: "Vidange moteur",
+                    image: "img/molette.png",
+                    color: Colors.orange,
+                    border: Colors.orange,
+                    onTap: () {},
+                  )),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // 📦 FOOTER 
+              Container(
+                width: double.infinity,
+                height: 80,
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 30, 42, 71),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: const Color(0xFF2563EB), width: 1),
+                ),
+
+                child: Row(
+                  children: [
+
+                    Expanded(child: FooterItem(
+                      icon: Icons.wb_sunny,
+                      title: "MÉTÉO",
+                      value: "CAVOK",
+                    )),
+
+                    Expanded(child: FooterItem(
+                      title: "CARBURANT",
+                      value: "78%",
+                      icon: Icons.local_gas_station,
+                    )),
+
+                    Expanded(child: FooterItem(
+                      title: "GPS",
+                      value: "ACTIF",
+                      icon: Icons.navigation,
+                    )),
+
+                    Expanded(child: FooterItem(
+                      title: "SYSTÈME",
+                      value: "OK",
+                      icon: Icons.check_circle,
+                    )),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
